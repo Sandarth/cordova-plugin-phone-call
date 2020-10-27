@@ -137,15 +137,11 @@ public class PhoneDialer extends CordovaPlugin {
                             Thread.sleep(5000); // Delay 0,5 seconds to handlecallPhone better turning on loudspeaker
                         } catch (InterruptedException e) {
                         }
-
-
                     }
                     break;
 
                 case TelephonyManager.CALL_STATE_IDLE: //Call is finished
-                    Log.d("CALL_STATE_IDLE", "c" + callFromOffHook);
                     if (callFromOffHook) {
-
                         callFromOffHook=false;
                         manager.listen(myPhoneStateListener, // Remove listener
                                 PhoneStateListener.LISTEN_NONE);
@@ -202,11 +198,7 @@ public class PhoneDialer extends CordovaPlugin {
     }
 
     private void hangUpCall(JSONArray args) throws JSONException {
-        //Activate loudspeaker
-
         killCall(this.cordova.getActivity());
-
-
     }
 
     private void isSpeakerOn(){
@@ -220,8 +212,6 @@ public class PhoneDialer extends CordovaPlugin {
 
     private void toggleAudio(JSONArray args) throws JSONException {
         String onSpeak = args.getString(0);
-        //Activate loudspeaker
-        AudioManager audioManager = (AudioManager) this.cordova.getActivity().getSystemService(Context.AUDIO_SERVICE);
         if (onSpeak.toLowerCase().equals("true")) {
             isSpeakerOn = true;
         } else {
@@ -234,7 +224,6 @@ public class PhoneDialer extends CordovaPlugin {
     }
 
     private void callPhone(JSONArray args) throws JSONException {
-        //toggleAudio(true);
         String number = args.getString(0);
         number = number.replaceAll("#", "%23");
 

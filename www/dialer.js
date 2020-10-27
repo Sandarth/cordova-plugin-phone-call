@@ -49,7 +49,7 @@ module.exports = {
             );
         }
     },
-    toggle: function(speakerOn, successCallback, errorCallback, bypassAppChooser) {
+    toggle: function(speakerOn, successCallback, errorCallback) {
         if (speakerOn == null) errorCallback("empty");
         if (platformId == 'android') {
             exec(
@@ -57,7 +57,19 @@ module.exports = {
                 errorCallback, 
                 "PhoneDialer", 
                 "toggle", 
-                [speakerOn, bypassAppChooser]
+                [speakerOn]
+            );
+        }
+    },
+    isSpeakerOn: function(speakerOn, successCallback, errorCallback) {
+        if (speakerOn == null) errorCallback("empty");
+        if (platformId == 'android') {
+            exec(
+                successCallback, 
+                errorCallback, 
+                "PhoneDialer", 
+                "isSpeakerOn", 
+                []
             );
         }
     }
