@@ -61,8 +61,7 @@ module.exports = {
             );
         }
     },
-    isSpeakerOn: function(speakerOn, successCallback, errorCallback) {
-        if (speakerOn == null) errorCallback("empty");
+    isSpeakerOn: function(successCallback, errorCallback) {
         if (platformId == 'android') {
             exec(
                 successCallback, 
