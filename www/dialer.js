@@ -37,5 +37,28 @@ module.exports = {
             document.location.href = "tel:" + phnum;
             if (successCallback) successCallback();
         }
+    },
+    hangUp: function(successCallback, errorCallback) {
+        if (platformId == 'android') {
+            exec(
+                successCallback, 
+                errorCallback, 
+                "PhoneDialer", 
+                "hangUp", 
+                []
+            );
+        }
+    },
+    toggle: function(speakerOn, successCallback, errorCallback, bypassAppChooser) {
+        if (speakerOn == null) errorCallback("empty");
+        if (platformId == 'android') {
+            exec(
+                successCallback, 
+                errorCallback, 
+                "PhoneDialer", 
+                "toggle", 
+                [speakerOn, bypassAppChooser]
+            );
+        }
     }
 };
